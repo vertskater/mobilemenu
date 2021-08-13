@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+nav {
+  .nav-trigger {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    border: 5px solid salmon;
+    background-color: saddlebrown;
+    cursor: pointer;
+    top: 30px;
+    left: -10px;
+    border-radius: 10px;
+    &.animate {
+      animation: blink 600ms 1 cubic-bezier(0, 0.61, 1, 0.13);
+    }
+  }
+  ul {
+    z-index: 9999;
+    padding: 50px 0;
+    width: 0;
+    height: 0;
+    //pointer-events: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: violet;
+    line-height: 50px;
+    background: rgb(134, 74, 242);
+    background: radial-gradient(
+      farthest-corner at 40px 40px,
+      rgba($color: #07a0c3, $alpha: 1) 0%,
+      rgba($color: #07a0c3, $alpha: 1) 50%,
+      rgba($color: #0ad3ff, $alpha: 1) 50%,
+      rgba($color: #0ad3ff, $alpha: 1) 55%,
+      rgba(255, 255, 255, 0) 55%,
+      rgba(21, 209, 255, 0) 100%
+    );
+    li {
+      padding-left: 50px;
+      list-style-type: none;
+      font-size: 1.5rem;
+      padding-top: 20px;
+      opacity: 0;
+      &.ani-top-down {
+        //animation: menupoints 1s 1 1s ease-in-out;
+        transform: translateY(-15px);
+        opacity: 1;
+      }
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+    &.menu-open {
+      animation: open-menu 1s 1 ease-in-out;
+    }
+  }
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  background-color: rgba($color: #fff, $alpha: 0.5);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+  &.active {
+    opacity: 1;
+  }
+}
+.btn-menu-close {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111d4a;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 99999;
+  &.active {
+    opacity: 1;
+    bottom: 40px;
+  }
+}
+
+@keyframes open-menu {
+  from {
+    height: 0;
+    width: 0;
+  }
+  to {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes menupoints {
+  from {
+    //opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
